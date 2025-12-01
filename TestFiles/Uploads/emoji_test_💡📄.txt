@@ -1,0 +1,9 @@
+UPL-07: File name with emoji test
+
+This file tests:
+- Support for emoji in filenames (💡📄)
+- Unicode character handling
+- File system compatibility
+
+Filename: emoji_test_💡📄.txt
+Expected: Accepted or normalized per policy

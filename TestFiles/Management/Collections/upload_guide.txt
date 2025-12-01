@@ -1,0 +1,38 @@
+# Collection Item 2: File Upload Guide
+
+File Upload Instructions
+=========================
+
+Supported File Types:
+--------------------
+✓ Images: PNG, JPG (up to 10MB)
+✓ Documents: PDF (up to 10MB)
+✓ Office: DOCX, PPTX (up to 10MB)
+✓ Data: CSV, JSON, TXT (up to 10MB)
+✗ Not Supported: XLSX (Excel files are blocked)
+
+How to Upload:
+--------------
+1. Click "Upload" button or drag files to upload area
+2. Select one or more files
+3. Monitor upload progress
+4. Verify file appears in file list with correct metadata
+
+Multiple File Upload:
+--------------------
+• Select multiple files at once
+• Each file shows individual progress
+• Errors are reported per file
+• UI remains responsive during upload
+
+File Naming:
+-----------
+• Hebrew characters supported: קובץ_חדש.pdf ✓
+• Emoji may be normalized: 💡test.pdf → test.pdf
+• Illegal characters (/, \, :) are blocked
+
+Troubleshooting:
+---------------
+• File too large? Compress or split it
+• Upload failed? Check connection and retry
+• Encoding issues? Ensure UTF-8 for text files

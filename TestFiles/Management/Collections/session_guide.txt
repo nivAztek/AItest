@@ -1,0 +1,29 @@
+# Collection Item 1: Session Management Guide
+
+How to Create a New Session
+============================
+
+To create a new session in AI Adama:
+
+1. Click the "New Session" button in the top navigation
+2. The system will initialize a fresh conversation context
+3. Your first message will be recorded as the session start
+4. Each message and response is chronologically recorded
+5. Sessions are automatically saved
+
+Session Features:
+-----------------
+- Automatic history tracking
+- Search within session
+- Export session history
+- Share session with team members
+- Archive old sessions
+
+Best Practices:
+---------------
+• Start a new session for each distinct topic
+• Use descriptive first messages to identify sessions later
+• Close sessions when switching contexts to avoid confusion
+• Regularly archive completed sessions
+
+For more information, see the FAQ or contact support.

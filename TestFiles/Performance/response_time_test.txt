@@ -1,0 +1,141 @@
+# PER-01: Average Response Time Test - 20 Representative Questions
+
+TEST ID: PER-01
+PURPOSE: Measure SLA for standard queries
+EXPECTED: Average within SLA; outliers documented
+
+=== 20 REPRESENTATIVE USER QUESTIONS ===
+
+Category: General Knowledge (5 questions)
+-----------------------------------------
+1. "What is artificial intelligence?"
+2. "Explain the difference between machine learning and deep learning"
+3. "What are the main benefits of cloud computing?"
+4. "How does encryption work?"
+5. "What is the difference between SQL and NoSQL databases?"
+
+Category: Technical Support (5 questions)
+-----------------------------------------
+6. "How do I reset my password?"
+7. "Why can't I upload files larger than 10MB?"
+8. "How do I create a new session?"
+9. "Where can I find my session history?"
+10. "How do I share a collection with my team?"
+
+Category: Data Analysis (5 questions)
+-------------------------------------
+11. "Analyze this sales data and identify trends"
+12. "What's the correlation between variables X and Y?"
+13. "Summarize the key insights from this dataset"
+14. "Calculate the average, median, and standard deviation"
+15. "Predict next quarter's revenue based on historical data"
+
+Category: Creative/Writing (3 questions)
+---------------------------------------
+16. "Write a professional email to a client"
+17. "Create a summary of this technical document"
+18. "Suggest improvements for this marketing copy"
+
+Category: Hebrew Language (2 questions)
+---------------------------------------
+19. "מה ההבדל בין בינה מלאכותית ללמידת מכונה?"
+20. "הסבר כיצד פועלת מערכת AI Adama"
+
+=== PERFORMANCE TESTING PROCEDURE ===
+
+Setup:
+------
+□ Staging environment with production-like load
+□ Monitoring enabled (Azure Application Insights / equivalent)
+□ Clean state (no cached responses)
+□ Consistent model settings (same preset for all)
+
+Execution Steps:
+----------------
+1. Send question #1
+2. Record timestamp when sent
+3. Record timestamp when first token received
+4. Record timestamp when response complete
+5. Calculate:
+   - Time to First Token (TTFT)
+   - Total Response Time
+   - Token count
+   - Tokens per second
+6. Repeat for all 20 questions
+7. Wait 30 seconds between questions (avoid throttling)
+
+Metrics to Capture:
+-------------------
+For each question:
+- Question ID (1-20)
+- Question text
+- Timestamp sent
+- Timestamp first token
+- Timestamp complete
+- Time to First Token (ms)
+- Total response time (ms)
+- Response length (characters)
+- Response tokens (if available)
+- Model used
+- Any errors/warnings
+
+=== ANALYSIS ===
+
+Calculate:
+----------
+□ Average response time (all 20 questions)
+□ Median response time
+□ 95th percentile (p95)
+□ 99th percentile (p99)
+□ Standard deviation
+□ Minimum response time
+□ Maximum response time
+□ Outliers (>2 standard deviations)
+
+SLA Targets (Example):
+----------------------
+- Average response time: < 3 seconds
+- p95 response time: < 5 seconds
+- p99 response time: < 8 seconds
+- Time to first token: < 1 second
+
+Outlier Investigation:
+---------------------
+For any response >5 seconds:
+1. Check question complexity
+2. Review token count
+3. Inspect backend logs
+4. Check for rate limiting
+5. Verify no network issues
+6. Document reason for delay
+
+Expected Results:
+-----------------
+✓ Average within SLA target
+✓ No failures (all 20 succeed)
+✓ Consistent performance (low std deviation)
+✓ Outliers documented with explanation
+✓ Hebrew questions perform similarly to English
+
+Report Template:
+----------------
+Performance Test Results - PER-01
+Date: [Date]
+Environment: [Staging/Production]
+Model: [Model name]
+
+Summary:
+- Total questions: 20
+- Successful: [count]
+- Failed: [count]
+- Average response time: [X.XX] seconds
+- Median: [X.XX] seconds
+- p95: [X.XX] seconds
+- p99: [X.XX] seconds
+- SLA Status: [PASS/FAIL]
+
+Outliers:
+- Question #[X]: [time] - Reason: [explanation]
+
+Recommendations:
+- [If any optimizations needed]

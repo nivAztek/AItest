@@ -1,0 +1,231 @@
+# UX-03: RTL/Hebrew Support and Keyboard Shortcuts Test
+
+TEST ID: UX-03
+PURPOSE: Validate right-to-left layout and keyboard shortcuts
+EXPECTED: Layout correct; shortcuts function; no broken UI
+
+=== RTL (RIGHT-TO-LEFT) TESTING ===
+
+Hebrew UI Content for Testing:
+------------------------------
+
+כותרות:
+--------
+מערכת AI Adama
+ניהול קבצים ותיקיות
+היסטוריית שיחות
+הגדרות מערכת
+בחירת מודל
+פרומפטים שמורים
+
+תפריטים:
+---------
+קובץ | עריכה | תצוגה | כלים | עזרה
+העלאה | הורדה | שיתוף | מחיקה | ארכוב
+
+הודעות משתמש:
+-------------
+"ברוכים הבאים למערכת AI Adama"
+"הקובץ הועלה בהצלחה"
+"השיחה נשמרה"
+"האם אתה בטוח שברצונך למחוק?"
+"הפעולה בוצעה בהצלחה"
+
+תיאורי שדות טופס:
+------------------
+שם משתמש:
+סיסמה:
+דוא"ל:
+תיאור:
+קטגוריה:
+
+כפתורים:
+---------
+[שמור] [ביטול] [עריכה] [מחק] [שתף]
+[החל] [סגור] [הבא] [הקודם]
+
+=== RTL LAYOUT VALIDATION ===
+
+Element Positioning (Hebrew UI):
+--------------------------------
+□ Text aligns right
+□ Icons appear on left side of text
+□ Scroll bars on left side
+□ Navigation menu flows right-to-left
+□ Breadcrumbs: Home > Folder > File (right to left)
+□ Dropdown arrows point correctly
+□ Modal dialogs aligned right
+
+Mixed Content (Hebrew + English):
+---------------------------------
+Text: "המודל GPT-4 זמין כעת"
+Expected: Hebrew RTL, English LTR embedded correctly
+
+Text: "נותרו 500 tokens"
+Expected: Number embedded correctly in Hebrew text
+
+Bi-Directional (BiDi) Text:
+--------------------------
+Example: "שלח אימייל ל-john@example.com לקבלת תמיכה"
+Expected: Email address LTR within RTL text
+
+=== KEYBOARD SHORTCUTS TESTING ===
+
+Global Shortcuts:
+-----------------
+Ctrl + N → New Session
+Ctrl + O → Open File
+Ctrl + S → Save
+Ctrl + F → Find/Search
+Ctrl + H → History
+Ctrl + / → Show keyboard shortcuts help
+Esc → Close dialog/Cancel
+
+Hebrew-Specific:
+----------------
+Alt + ה → Navigate to Help (עזרה)
+Alt + ק → Navigate to Files (קבצים)
+Alt + ש → Navigate to Settings (הגדרות)
+
+Navigation:
+-----------
+Tab → Next field
+Shift + Tab → Previous field
+Arrow keys → Navigate lists
+Enter → Confirm/Submit
+Esc → Cancel/Close
+
+Session/Chat:
+-------------
+Ctrl + Enter → Send message
+Ctrl + Shift + N → New session
+Ctrl + Shift + D → Delete session
+Ctrl + , → Settings
+
+File Management:
+----------------
+Ctrl + U → Upload
+Ctrl + D → Download selected
+Delete → Delete selected (with confirm)
+Ctrl + A → Select all
+Ctrl + Shift + A → Deselect all
+
+=== TEST SCENARIOS ===
+
+Scenario 1: Switch to Hebrew UI
+-------------------------------
+1. Go to Settings
+2. Change language to עברית (Hebrew)
+3. Verify:
+   □ All text aligns right
+   □ Menus flow right-to-left
+   □ Icons positioned correctly
+   □ No text overflow
+   □ No broken layouts
+
+Scenario 2: Mixed Content Display
+----------------------------------
+Display this text in Hebrew UI:
+"השתמש במודל GPT-4 Turbo עם temperature של 0.7 לתוצאות מיטביות"
+
+Verify:
+□ Hebrew text RTL
+□ "GPT-4 Turbo" remains LTR
+□ Number "0.7" displays correctly
+□ No awkward spacing
+
+Scenario 3: Form Input (RTL)
+----------------------------
+Hebrew form with fields:
+- שם הפרומפט: [____________________]
+- קטגוריה: [▼ בחר קטגוריה]
+- תיאור: [_____________________]
+         [_____________________]
+
+Verify:
+□ Labels aligned right
+□ Input fields aligned right
+□ Cursor starts on right
+□ Text typed from right to left
+□ Dropdown opens correctly
+
+Scenario 4: Keyboard Shortcut Help
+-----------------------------------
+Press: Ctrl + /
+Expected:
+- Modal opens showing all shortcuts
+- Shortcuts displayed in current language
+- Modal aligned correctly for RTL/LTR
+- Esc closes the modal
+
+Scenario 5: Bidirectional File Names
+------------------------------------
+Files with mixed names:
+- "דוח_report_2024.pdf"
+- "meeting_notes_פגישה.docx"
+- "📊 נתונים_data.xlsx"
+
+Verify:
+□ Names display correctly
+□ Icons aligned properly
+□ Sort order makes sense
+□ No broken rendering
+
+=== ACCESSIBILITY INTEGRATION ===
+
+Screen Reader (Hebrew):
+-----------------------
+With NVDA/JAWS in Hebrew mode:
+□ Announces UI elements in Hebrew
+□ Correct reading order (RTL)
+□ Announces button states
+□ Announces form labels
+
+Keyboard Navigation:
+--------------------
+□ All interactive elements reachable via Tab
+□ Focus visible and clear
+□ Logical tab order (RTL context)
+□ No keyboard traps
+
+=== BROWSER COMPATIBILITY ===
+
+Test RTL in:
+------------
+□ Chrome (Windows)
+□ Edge (Windows)
+□ Firefox (Windows)
+□ Safari (Mac)
+
+Verify:
+□ Consistent RTL rendering
+□ Shortcuts work in all browsers
+□ No browser-specific layout issues
+
+=== COMMON RTL ISSUES CHECKLIST ===
+
+Avoid:
+□ Hardcoded left/right CSS
+□ LTR-only icons
+□ Incorrect text-align
+□ Wrong transform/translate directions
+□ Mirrored icons that shouldn't be
+□ Incorrect scroll behavior
+
+Use:
+□ Logical properties (start/end instead of left/right)
+□ dir="rtl" attribute
+□ CSS direction: rtl
+□ Proper BiDi algorithm support
+□ Language-aware number formatting
+
+=== EXPECTED RESULTS ===
+
+✓ Hebrew UI fully functional
+✓ All text properly aligned (RTL)
+✓ Mixed content displays correctly
+✓ All keyboard shortcuts work
+✓ Shortcut help accessible
+✓ No visual glitches or overflow
+✓ Screen readers compatible
+✓ Works across browsers

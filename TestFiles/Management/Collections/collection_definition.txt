@@ -1,0 +1,35 @@
+MGR-03/MGR-04: Collection Definition
+=====================================
+
+Collection Name: "Product Documentation"
+Description: Technical documentation for AI Adama features
+Created: 2025-12-01
+Owner: Test User
+
+Items in Collection:
+-------------------
+1. User Guide - Session Management
+2. User Guide - File Upload
+3. User Guide - Saved Prompts
+4. User Guide - Model Selection
+5. Admin Guide - Security Settings
+6. Admin Guide - Permission Management
+7. FAQ - Common Issues
+8. FAQ - Troubleshooting
+9. Release Notes - Version 1.0
+10. API Documentation
+
+Test Question for MGR-04:
+------------------------
+Q: "How do I create a new session?"
+Expected: Answer should cite the "User Guide - Session Management" 
+from this collection with proper attribution.
+
+Collections Test Instructions:
+------------------------------
+1. Create this collection in the system
+2. Add the items listed above (create dummy files if needed)
+3. Save the collection
+4. Use collection as context in AI query
+5. Ask the test question
+6. Verify citation/attribution appears

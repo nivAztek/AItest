@@ -1,0 +1,15 @@
+# MGR-01: Sample File for CRUD Testing
+
+File Purpose: Test create, move, rename operations
+Original Location: Management folder
+Test Scenario: This file will be moved to FolderA and renamed
+
+Content:
+--------
+This is a sample document for testing file management operations.
+Operations to test:
+1. Create folder
+2. Move this file into folder
+3. Rename folder
+4. Rename file
+5. Verify audit log records all actions

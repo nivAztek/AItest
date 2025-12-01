@@ -1,0 +1,306 @@
+# UX-01 & UX-02: Error Messages & Progress Tracking Tests
+
+=== UX-01: CLEAR ERROR MESSAGES ===
+
+TEST ID: UX-01
+PURPOSE: Validate error message clarity, brevity, and localization
+EXPECTED: Messages understandable, localized, and actionable
+
+Error Scenarios to Test:
+------------------------
+
+1. Upload Size Exceeded (UPL-06 related)
+English:
+"⚠️ File Size Limit Exceeded
+
+The file 'large_document.pdf' (12.5 MB) exceeds the maximum allowed size of 10 MB.
+
+Next steps:
+• Compress the file and try again
+• Split into smaller files
+• Contact support for larger file options
+
+[Retry] [Cancel]"
+
+Hebrew:
+"⚠️ גודל הקובץ חורג מהמותר
+
+הקובץ 'large_document.pdf' (12.5 MB) חורג מהגודל המקסימלי המותר של 10 MB.
+
+צעדים הבאים:
+• דחוס את הקובץ ונסה שוב
+• פצל לקבצים קטנים יותר
+• פנה לתמיכה לאפשרויות קבצים גדולים יותר
+
+[נסה שוב] [ביטול]"
+
+Validation:
+□ Clear problem statement
+□ Specific details (file name, size)
+□ Actionable next steps
+□ Localized correctly
+□ Appropriate tone (helpful, not blaming)
+□ Correct iconography
+
+---
+
+2. Network Connection Lost
+English:
+"🔌 Connection Lost
+
+Unable to reach the server. Please check your internet connection.
+
+[Retry Now] [Offline Mode]"
+
+Hebrew:
+"🔌 החיבור אבד
+
+לא ניתן להגיע לשרת. אנא בדוק את חיבור האינטרנט.
+
+[נסה שוב] [מצב לא מקוון]"
+
+---
+
+3. Permission Denied (SEC-01 related)
+English:
+"🚫 Permission Denied
+
+You do not have permission to delete this file.
+
+Contact an administrator to request access.
+
+[OK]"
+
+Hebrew:
+"🚫 אין הרשאה
+
+אין לך הרשאה למחוק קובץ זה.
+
+פנה למנהל מערכת לבקשת גישה.
+
+[אישור]"
+
+---
+
+4. Invalid Input (Form Validation)
+English:
+"⚠️ Invalid Email Address
+
+Please enter a valid email address (e.g., user@example.com).
+
+[Fix]"
+
+Hebrew:
+"⚠️ כתובת דוא\"ל לא תקינה
+
+אנא הזן כתובת דוא\"ל תקינה (לדוגמה: user@example.com).
+
+[תקן]"
+
+---
+
+5. Session Expired
+English:
+"⏰ Session Expired
+
+Your session has expired due to inactivity.
+
+Please log in again to continue.
+
+[Log In]"
+
+Hebrew:
+"⏰ פג תוקף ההפעלה
+
+פג תוקף ההפעלה שלך עקב חוסר פעילות.
+
+אנא התחבר שוב כדי להמשיך.
+
+[התחבר]"
+
+---
+
+Error Message Quality Checklist:
+---------------------------------
+□ Icon appropriate to error type
+□ Heading concise (< 50 characters)
+□ Body explains the problem clearly
+□ Suggests specific next steps
+□ Buttons labeled with actions (not just "OK")
+□ Translated accurately
+□ Maintains professional tone
+□ No technical jargon
+□ Includes correlation ID for complex errors
+□ Consistent styling across errors
+
+=== UX-02: PROGRESS TRACKING ===
+
+TEST ID: UX-02
+PURPOSE: Progress indicators for uploads/analysis
+EXPECTED: Accurate progress reflects task state; no misleading values
+
+Progress Scenarios:
+-------------------
+
+1. Single File Upload
+Visual: 
+[████████░░░░░░░░░░] 45%
+Uploading: document.pdf (4.5 MB / 10 MB)
+
+Requirements:
+□ Progress bar fills proportionally
+□ Percentage matches visual bar
+□ File name shown
+□ Size uploaded / total size
+□ Smooth animation (no jumps)
+□ Completes at 100%
+
+---
+
+2. Multiple File Upload (Batch)
+Visual:
+Overall Progress: [██████░░░░░░░░] 50% (3 of 6 files)
+
+File 1: report.pdf ✓ Complete
+File 2: data.csv ✓ Complete  
+File 3: image.jpg [████████░░] 80%
+File 4: notes.txt Queued
+File 5: slides.pptx Queued
+File 6: video.mp4 Queued
+
+Requirements:
+□ Overall progress accurate
+□ Individual file progress shown
+□ Completed files marked with ✓
+□ Queued files visible
+□ Current file highlighted
+□ Can cancel individual files
+
+---
+
+3. Deep Research Progress (DRS-01 related)
+Visual:
+Deep Research in Progress...
+
+Step 1: Gathering sources ✓ Complete
+Step 2: Analyzing content [█████░░░░░] 60%
+Step 3: Synthesizing findings Pending
+Step 4: Generating citations Pending
+
+Estimated time remaining: ~2 minutes
+
+Requirements:
+□ Step-by-step breakdown
+□ Current step highlighted
+□ Completed steps marked
+□ Pending steps visible
+□ Time estimate (if available)
+□ Can cancel at any step
+
+---
+
+4. Indeterminate Progress (Unknown Duration)
+Visual:
+Processing...
+[═══════════════] (animated spinner)
+
+Please wait while we process your request.
+
+Use when:
+□ Duration unknown
+□ Backend processing
+□ Initial connection
+□ Waiting for external service
+
+Requirements:
+□ Spinner/animation present
+□ Text indicates activity
+□ Doesn't suggest percentage
+□ Can cancel (if applicable)
+
+---
+
+5. Progress with Errors
+Visual:
+Upload Progress: [████████░░] 75% (3 of 4 files)
+
+File 1: report.pdf ✓ Complete
+File 2: data.csv ✓ Complete
+File 3: image.jpg ✗ Failed (File too large)
+File 4: notes.txt [████░░░░░░] 40%
+
+[Retry Failed] [Continue]
+
+Requirements:
+□ Failed files clearly marked ✗
+□ Error reason shown
+□ Successful files not affected
+□ Can retry individually
+□ Can continue with successful files
+
+---
+
+Progress Quality Checklist:
+---------------------------
+□ Visual progress bar present
+□ Percentage accurate (0-100%)
+□ No backwards movement
+□ Smooth transitions
+□ Doesn't stick at 99%
+□ Completes at exactly 100%
+□ Clear labeling (what's progressing)
+□ Time estimate (if known)
+□ Cancelable (where appropriate)
+□ Responsive (updates in real-time)
+□ Accessible (aria-valuenow, aria-valuemax)
+□ Error states handled
+
+=== COMBINED SCENARIO ===
+
+Upload Error + Progress:
+------------------------
+User uploads 5 files, one fails mid-upload.
+
+Expected Flow:
+1. Progress shows 0%
+2. Files upload one by one
+3. File 3 fails at 60%
+4. Error message appears:
+   "⚠️ Upload Failed
+   
+   'document.pdf' failed to upload due to network interruption.
+   
+   [Retry] [Skip]"
+5. User clicks Retry
+6. Progress resumes for that file
+7. Overall progress continues
+8. All files complete at 100%
+
+=== LOCALIZATION VALIDATION ===
+
+Test both English and Hebrew for:
+□ Error messages translate correctly
+□ No broken characters (squares)
+□ Buttons sized appropriately
+□ RTL layout for Hebrew
+□ Icons positioned correctly
+□ Tone appropriate for culture
+
+=== EXPECTED RESULTS ===
+
+UX-01:
+✓ Error messages clear and helpful
+✓ No technical jargon
+✓ Actionable next steps provided
+✓ Properly localized (EN/HE)
+✓ Consistent styling
+✓ Appropriate tone
+
+UX-02:
+✓ Progress bars accurate
+✓ Real-time updates
+✓ No misleading percentages
+✓ Clear step indicators
+✓ Error states handled gracefully
+✓ Can cancel operations
+✓ Accessible to screen readers

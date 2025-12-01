@@ -1,0 +1,8 @@
+# UPL-01: Test Image File (Simulated PNG)
+# This is a placeholder for a 5MB PNG image
+# In real testing, replace with actual image file
+
+FILE_TYPE: PNG
+SIZE: ~5MB
+PURPOSE: Test successful upload and preview/metadata display
+EXPECTED: Upload succeeds; name, size, date shown; file usable

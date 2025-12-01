@@ -1,0 +1,117 @@
+# SEC-03: Encryption Validation Test
+
+TEST ID: SEC-03
+PURPOSE: Validate TLS and storage encryption
+EXPECTED: TLS enabled; storage encrypted as per policy
+
+=== TLS (Encryption in Transit) VALIDATION ===
+
+Configuration Check:
+--------------------
+✓ Minimum TLS version: 1.2
+✓ Preferred: TLS 1.3
+✓ HTTP Strict Transport Security (HSTS) enabled
+✓ Certificate valid and from trusted CA
+✓ No mixed content (HTTP/HTTPS)
+
+Commands to Verify TLS:
+-----------------------
+# Check TLS version and cipher
+curl -vI https://app.example.com 2>&1 | grep -i 'tls\|ssl'
+
+# Scan with OpenSSL
+openssl s_client -connect app.example.com:443 -tls1_2
+
+# Expected output includes:
+# - Protocol: TLSv1.2 or TLSv1.3
+# - Cipher: Strong cipher (e.g., ECDHE-RSA-AES256-GCM-SHA384)
+# - Verify return code: 0 (ok)
+
+PowerShell Check:
+-----------------
+$url = "https://app.example.com"
+$request = [System.Net.WebRequest]::Create($url)
+$response = $request.GetResponse()
+$response.ProtocolVersion  # Should be 1.1 or higher (HTTPS)
+
+Certificate Validation:
+-----------------------
+✓ Valid certificate chain
+✓ Not expired
+✓ Correct domain name
+✓ Issued by trusted CA (not self-signed in production)
+✓ Certificate revocation checked
+
+Expected Certificate Properties:
+--------------------------------
+Subject: CN=app.example.com
+Issuer: Trusted CA (e.g., Let's Encrypt, DigiCert)
+Valid From: [Date]
+Valid To: [Date] (not expired)
+Key Usage: Digital Signature, Key Encipherment
+Extended Key Usage: Server Authentication
+
+=== STORAGE ENCRYPTION (Encryption at Rest) ===
+
+Database Encryption:
+--------------------
+✓ Transparent Data Encryption (TDE) enabled
+✓ Encryption at rest for all PII/sensitive data
+✓ Encrypted backups
+✓ Key rotation policy in place
+
+Azure Storage Check:
+--------------------
+# Check if Azure Storage Account has encryption enabled
+az storage account show \
+  --name <storage_account_name> \
+  --query 'encryption.services' \
+  --output table
+
+# Expected: All services (blob, file, queue, table) encrypted
+
+File System Encryption:
+-----------------------
+✓ Disk encryption enabled (BitLocker/LUKS)
+✓ Uploaded files encrypted at rest
+✓ Session data encrypted
+✓ Logs encrypted
+
+Verification Steps:
+-------------------
+1. Upload a test file
+2. Check storage backend
+3. Verify file is encrypted (not readable in plaintext)
+4. Download file and verify decryption works
+5. Check audit trail for encryption events
+
+Key Management:
+---------------
+✓ Keys stored in secure vault (Azure Key Vault, AWS KMS, etc.)
+✓ Keys not hardcoded in application
+✓ Key rotation schedule defined
+✓ Access to keys restricted by RBAC
+✓ Key usage logged
+
+=== VALIDATION CHECKLIST ===
+
+TLS/Transit:
+□ HTTPS enforced (HTTP redirects to HTTPS)
+□ TLS 1.2 minimum
+□ Strong ciphers only
+□ Valid certificate
+□ HSTS enabled
+□ No SSL/early TLS versions
+
+Storage/Rest:
+□ Database encrypted
+□ File storage encrypted
+□ Backups encrypted
+□ Keys managed securely
+□ Encryption verified via inspection
+
+Compliance:
+□ Meets GDPR encryption requirements
+□ Meets SOC 2 encryption standards
+□ Documented encryption policy
+□ Regular encryption audits performed

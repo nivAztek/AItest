@@ -1,0 +1,15 @@
+# MGR-02: File for Permission Testing
+
+File Purpose: Test deletion permissions
+User Roles Required:
+- Admin: Should be able to delete
+- Viewer: Should be blocked from deletion
+
+Test Steps:
+1. Login as Viewer role
+2. Attempt to delete this file (expect block)
+3. Verify error message is clear
+4. Login as Admin role
+5. Delete this file successfully
+6. Check audit trail for both attempts
+7. Restore from recycle bin (if available)

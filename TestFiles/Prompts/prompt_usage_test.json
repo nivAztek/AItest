@@ -1,0 +1,46 @@
+{
+  "testId": "PRM-03",
+  "purpose": "Use Prompt in conversation - verify impact on responses",
+  "scenarios": [
+    {
+      "scenario": "Professional vs Casual Tone",
+      "baselinePrompt": null,
+      "testPrompt": {
+        "id": "prompt_formal",
+        "name": "Formal Business Assistant",
+        "promptText": "You are a formal business assistant. Use professional language, avoid casual expressions, and maintain a corporate tone. Address users as 'Sir' or 'Madam'."
+      },
+      "testQuestion": "How do I write an email to my boss about taking a day off?",
+      "expectedDifference": "Baseline: casual/friendly. Test prompt: formal/professional with 'Dear Sir/Madam' style"
+    },
+    {
+      "scenario": "Concise vs Detailed",
+      "baselinePrompt": null,
+      "testPrompt": {
+        "id": "prompt_concise",
+        "name": "Concise Responder",
+        "promptText": "You provide extremely concise answers. Maximum 2 sentences per response. No fluff, only essential information."
+      },
+      "testQuestion": "What is machine learning?",
+      "expectedDifference": "Baseline: detailed explanation. Test prompt: 1-2 sentence definition only"
+    },
+    {
+      "scenario": "Hebrew Language Enforcement",
+      "baselinePrompt": null,
+      "testPrompt": {
+        "id": "prompt_hebrew",
+        "name": "עוזר עברית בלבד",
+        "promptText": "אתה עוזר שעונה תמיד בעברית בלבד, ללא קשר לשפת השאלה. השתמש בעברית תקנית וברורה."
+      },
+      "testQuestion": "What is the weather today?",
+      "expectedDifference": "Baseline: English answer. Test prompt: Hebrew answer (מה מזג האוויר היום?)"
+    }
+  ],
+  "testInstructions": {
+    "step1": "Run each scenario without any prompt (baseline)",
+    "step2": "Apply the test prompt for each scenario",
+    "step3": "Ask the test question",
+    "step4": "Compare baseline vs prompted response",
+    "expected": "Responses clearly follow prompt style/constraints"
+  }
+}

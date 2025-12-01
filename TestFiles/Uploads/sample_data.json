@@ -1,0 +1,34 @@
+{
+  "testData": {
+    "testId": "UPL-04",
+    "purpose": "בדיקת העלאה של קובץ JSON עם תוכן בעברית",
+    "users": [
+      {
+        "name": "אברהם כהן",
+        "email": "avraham@example.com",
+        "role": "מפתח",
+        "permissions": ["read", "write", "execute"]
+      },
+      {
+        "name": "שרה לוי",
+        "email": "sarah@example.com",
+        "role": "מנהלת",
+        "permissions": ["read", "write", "admin"]
+      }
+    ],
+    "settings": {
+      "language": "he-IL",
+      "timezone": "Asia/Jerusalem",
+      "features": {
+        "webSearch": true,
+        "deepResearch": true,
+        "sharepoint": false
+      }
+    },
+    "metadata": {
+      "created": "2025-12-01T10:30:00Z",
+      "encoding": "UTF-8",
+      "version": "1.0.0"
+    }
+  }
+}

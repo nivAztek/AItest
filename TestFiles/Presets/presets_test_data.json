@@ -1,0 +1,210 @@
+{
+  "testId": "PRE-01 to PRE-04",
+  "purpose": "Preset testing - create, activate, update, search, dedup",
+  "presets": [
+    {
+      "id": "preset_001",
+      "name": "Quick Response (GPT-4)",
+      "description": "Fast responses with GPT-4, low creativity",
+      "model": {
+        "name": "gpt-4",
+        "provider": "openai",
+        "version": "gpt-4-0613"
+      },
+      "prompt": {
+        "promptId": "prompt_concise",
+        "promptText": "Provide concise, direct answers. Maximum 3 sentences per response."
+      },
+      "configuration": {
+        "temperature": 0.3,
+        "maxTokens": 500,
+        "topP": 0.9,
+        "frequencyPenalty": 0.0,
+        "presencePenalty": 0.0
+      },
+      "environment": {
+        "webSearchEnabled": false,
+        "deepResearchEnabled": false,
+        "collectionContext": null
+      },
+      "created": "2025-11-01T10:00:00Z",
+      "createdBy": "admin_user",
+      "tags": ["quick", "concise", "gpt4"]
+    },
+    {
+      "id": "preset_002",
+      "name": "Creative Writer (GPT-4 Turbo)",
+      "description": "Creative content generation with high temperature",
+      "model": {
+        "name": "gpt-4-turbo",
+        "provider": "openai",
+        "version": "gpt-4-1106-preview"
+      },
+      "prompt": {
+        "promptId": "prompt_creative",
+        "promptText": "You are a creative writer. Generate engaging, imaginative content with vivid descriptions and unique perspectives."
+      },
+      "configuration": {
+        "temperature": 0.9,
+        "maxTokens": 2000,
+        "topP": 0.95,
+        "frequencyPenalty": 0.3,
+        "presencePenalty": 0.3
+      },
+      "environment": {
+        "webSearchEnabled": true,
+        "deepResearchEnabled": false,
+        "collectionContext": null
+      },
+      "created": "2025-11-10T14:30:00Z",
+      "createdBy": "marketing_user",
+      "tags": ["creative", "writing", "high-temp"]
+    },
+    {
+      "id": "preset_003",
+      "name": "Technical Support (Claude)",
+      "description": "Detailed technical support with Claude model",
+      "model": {
+        "name": "claude-3-sonnet",
+        "provider": "anthropic",
+        "version": "claude-3-sonnet-20240229"
+      },
+      "prompt": {
+        "promptId": "prompt_tech_support",
+        "promptText": "You are a technical support specialist. Provide detailed, step-by-step solutions. Ask clarifying questions when needed."
+      },
+      "configuration": {
+        "temperature": 0.5,
+        "maxTokens": 1500,
+        "topP": 0.9,
+        "frequencyPenalty": 0.0,
+        "presencePenalty": 0.0
+      },
+      "environment": {
+        "webSearchEnabled": true,
+        "deepResearchEnabled": true,
+        "collectionContext": "technical_docs_collection"
+      },
+      "created": "2025-11-20T09:15:00Z",
+      "createdBy": "support_lead",
+      "tags": ["support", "technical", "claude", "detailed"]
+    },
+    {
+      "id": "preset_004",
+      "name": "עוזר עברית (GPT-4)",
+      "description": "תמיכה בעברית עם הגדרות מאוזנות",
+      "model": {
+        "name": "gpt-4",
+        "provider": "openai",
+        "version": "gpt-4-0613"
+      },
+      "prompt": {
+        "promptId": "prompt_hebrew",
+        "promptText": "אתה עוזר שמדבר עברית. תן תשובות ברורות ומפורטות בעברית תקנית."
+      },
+      "configuration": {
+        "temperature": 0.7,
+        "maxTokens": 1000,
+        "topP": 0.9,
+        "frequencyPenalty": 0.1,
+        "presencePenalty": 0.1
+      },
+      "environment": {
+        "webSearchEnabled": true,
+        "deepResearchEnabled": false,
+        "collectionContext": null
+      },
+      "created": "2025-11-25T16:00:00Z",
+      "createdBy": "admin_user",
+      "tags": ["hebrew", "עברית", "balanced"]
+    },
+    {
+      "id": "preset_005",
+      "name": "Data Analysis (GPT-4 Turbo)",
+      "description": "Statistical analysis and data insights",
+      "model": {
+        "name": "gpt-4-turbo",
+        "provider": "openai",
+        "version": "gpt-4-1106-preview"
+      },
+      "prompt": {
+        "promptId": "prompt_analyst",
+        "promptText": "You are a data analyst. Provide statistical analysis, identify patterns, and give actionable insights."
+      },
+      "configuration": {
+        "temperature": 0.4,
+        "maxTokens": 2000,
+        "topP": 0.9,
+        "frequencyPenalty": 0.0,
+        "presencePenalty": 0.0
+      },
+      "environment": {
+        "webSearchEnabled": false,
+        "deepResearchEnabled": true,
+        "collectionContext": "data_analytics_collection"
+      },
+      "created": "2025-12-01T08:00:00Z",
+      "createdBy": "analyst_user",
+      "tags": ["data", "analytics", "precise"]
+    }
+  ],
+  "testScenarios": {
+    "PRE_01_Create": {
+      "description": "Create a preset with all parameters",
+      "steps": [
+        "Fill model name: gpt-4",
+        "Add prompt text",
+        "Set temperature: 0.7",
+        "Set max tokens: 1000",
+        "Toggle web search: on",
+        "Save preset",
+        "Verify appears in list with correct values"
+      ],
+      "expected": "Preset saved and usable; values persisted"
+    },
+    "PRE_02_Activate": {
+      "description": "Activate preset and verify settings applied",
+      "controlQuestion": "Explain quantum computing",
+      "steps": [
+        "Ask control question without preset (capture baseline)",
+        "Select 'Quick Response' preset (temp=0.3, max=500)",
+        "Ask same question",
+        "Compare: should be shorter and more direct"
+      ],
+      "expected": "Model and settings applied; observable differences"
+    },
+    "PRE_03_Update": {
+      "description": "Update preset in active session",
+      "steps": [
+        "Open session with 'Creative Writer' preset (temp=0.9)",
+        "Ask: 'Write a story about AI'",
+        "Update preset: change temp to 0.3",
+        "Apply to active session",
+        "Ask same question",
+        "Compare: second response less creative, more factual"
+      ],
+      "expected": "New settings influence responses immediately"
+    },
+    "PRE_04_Search_Dedup": {
+      "description": "Search presets and prevent duplicates",
+      "tests": [
+        {
+          "searchTerm": "GPT-4",
+          "expectedResults": ["preset_001", "preset_004"]
+        },
+        {
+          "searchTerm": "creative",
+          "expectedResults": ["preset_002"]
+        },
+        {
+          "searchTerm": "עברית",
+          "expectedResults": ["preset_004"]
+        },
+        {
+          "duplicateTest": "Attempt to create preset with name 'Quick Response (GPT-4)'",
+          "expected": "Duplicate prevented or warning shown"
+        }
+      ]
+    }
+  }
+}

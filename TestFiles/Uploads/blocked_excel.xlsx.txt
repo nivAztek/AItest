@@ -1,0 +1,22 @@
+# UPL-03: Simulated XLSX file (Excel - should be BLOCKED)
+# This file should trigger a block error per policy
+
+TEST ID: UPL-03
+FILE TYPE: XLSX (Microsoft Excel) - BLOCKED FORMAT
+SIZE: N/A
+EXPECTED: Upload blocked with clear error message
+
+Error Message Expected:
+-----------------------
+"קבצי Excel (.xlsx) אינם נתמכים במערכת.
+אנא המר את הקובץ ל-CSV או פנה לתמיכה טכנית."
+
+"Excel files (.xlsx) are not supported.
+Please convert to CSV or contact support."
+
+Test Instructions:
+------------------
+1. Attempt to upload this file
+2. Verify upload is blocked
+3. Check error message clarity
+4. Verify DOCX/PPTX still succeed

@@ -1,0 +1,106 @@
+{
+  "testId": "PRM-04",
+  "purpose": "Search/metadata - validate search and metadata display",
+  "testData": {
+    "prompts": [
+      {
+        "id": "p001",
+        "name": "Customer Support Agent",
+        "creator": "john_doe",
+        "createdDate": "2025-01-15",
+        "category": "Support",
+        "tags": ["customer", "support", "service"],
+        "description": "Handles customer inquiries professionally"
+      },
+      {
+        "id": "p002",
+        "name": "Technical Documentation Writer",
+        "creator": "jane_smith",
+        "createdDate": "2025-02-20",
+        "category": "Documentation",
+        "tags": ["technical", "documentation", "writing"],
+        "description": "Creates clear technical documentation"
+      },
+      {
+        "id": "p003",
+        "name": "Code Reviewer",
+        "creator": "john_doe",
+        "createdDate": "2025-03-10",
+        "category": "Development",
+        "tags": ["code", "review", "quality"],
+        "description": "Reviews code for best practices and issues"
+      },
+      {
+        "id": "p004",
+        "name": "עוזר שירות לקוחות",
+        "creator": "sarah_cohen",
+        "createdDate": "2025-11-01",
+        "category": "תמיכה",
+        "tags": ["לקוחות", "תמיכה", "עברית"],
+        "description": "מטפל בפניות לקוחות בעברית"
+      },
+      {
+        "id": "p005",
+        "name": "Data Analyst Assistant",
+        "creator": "jane_smith",
+        "createdDate": "2025-11-15",
+        "category": "Analytics",
+        "tags": ["data", "analytics", "statistics"],
+        "description": "Analyzes data and provides insights"
+      }
+    ]
+  },
+  "searchTests": [
+    {
+      "searchType": "by_name",
+      "query": "Customer",
+      "expectedResults": ["p001", "p004"],
+      "description": "Should find both English and Hebrew customer support prompts"
+    },
+    {
+      "searchType": "by_creator",
+      "query": "john_doe",
+      "expectedResults": ["p001", "p003"],
+      "description": "Should find all prompts by john_doe"
+    },
+    {
+      "searchType": "by_creator",
+      "query": "jane_smith",
+      "expectedResults": ["p002", "p005"],
+      "description": "Should find all prompts by jane_smith"
+    },
+    {
+      "searchType": "by_date_range",
+      "query": {
+        "from": "2025-11-01",
+        "to": "2025-12-01"
+      },
+      "expectedResults": ["p004", "p005"],
+      "description": "Should find prompts created in November 2025"
+    },
+    {
+      "searchType": "by_tag",
+      "query": "documentation",
+      "expectedResults": ["p002"],
+      "description": "Should find prompts with documentation tag"
+    },
+    {
+      "searchType": "by_category",
+      "query": "Support",
+      "expectedResults": ["p001"],
+      "description": "Should find prompts in Support category"
+    }
+  ],
+  "metadataValidation": {
+    "requiredFields": [
+      "id",
+      "name",
+      "creator",
+      "createdDate",
+      "category",
+      "tags",
+      "description"
+    ],
+    "expectedDisplay": "All metadata fields should be clearly visible and accurate"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "testId": "PRM-02",
+  "purpose": "Edit/versions/restore - verify versioning works",
+  "prompt": {
+    "id": "prompt_versioned",
+    "name": "Marketing Content Writer",
+    "category": "Marketing",
+    "description": "Creates engaging marketing content",
+    "versions": [
+      {
+        "version": "1.0",
+        "promptText": "You are a marketing content writer. Create engaging content for social media.",
+        "created": "2025-11-01T10:00:00Z",
+        "createdBy": "marketing_user",
+        "changeLog": "Initial version"
+      },
+      {
+        "version": "1.1",
+        "promptText": "You are a marketing content writer specializing in B2B content. Create engaging, professional content for LinkedIn and business blogs. Focus on:\n- Clear value propositions\n- Industry insights\n- Professional tone",
+        "created": "2025-11-15T14:30:00Z",
+        "createdBy": "marketing_user",
+        "changeLog": "Added B2B focus and specific platform guidance"
+      },
+      {
+        "version": "1.2",
+        "promptText": "You are a marketing content writer specializing in B2B content for tech companies. Create engaging, professional content for LinkedIn and business blogs.\n\nFocus on:\n- Clear value propositions with ROI metrics\n- Industry insights and trends\n- Professional yet approachable tone\n- SEO optimization\n- Call-to-action in every piece\n\nTarget audience: CTOs, VPs of Engineering, Tech Leads",
+        "created": "2025-12-01T09:00:00Z",
+        "createdBy": "marketing_lead",
+        "changeLog": "Added tech focus, SEO, target audience, and CTA requirements"
+      }
+    ],
+    "currentVersion": "1.2",
+    "testInstructions": {
+      "step1": "Create prompt with version 1.0",
+      "step2": "Edit to version 1.1 - verify new version created",
+      "step3": "Edit to version 1.2 - verify version history maintained",
+      "step4": "Restore to version 1.1 - verify restoration works",
+      "step5": "Check version history shows all 3 versions",
+      "expected": "Version history maintained; restore works correctly"
+    }
+  }
+}

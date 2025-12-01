@@ -1,0 +1,236 @@
+# SP-01 to SP-05: SharePoint KB Integration Tests
+
+TEST IDs: SP-01, SP-02, SP-03, SP-04, SP-05
+PURPOSE: Validate SharePoint Knowledge Base integration
+
+=== SP-01: CONNECT AND AUTHORIZE ===
+
+Configuration Requirements:
+---------------------------
+□ Microsoft Entra ID (Azure AD) app registration
+□ Required Graph API scopes:
+  - Files.Read.All
+  - Sites.Read.All
+  - User.Read
+□ OAuth 2.0 authorization code flow
+□ Tenant ID and Client ID configured
+
+Connection Test Steps:
+---------------------
+1. Navigate to Settings → Knowledge Base → SharePoint
+2. Click "Connect to SharePoint"
+3. Authenticate with admin credentials
+4. Consent to requested permissions
+5. Verify token acquisition successful
+6. List accessible SharePoint sites
+7. List document libraries
+
+Expected Results:
+-----------------
+✓ Valid OAuth token acquired
+✓ Token stored securely (encrypted)
+✓ Accessible resources listed (sites, libraries, folders)
+✓ No permission errors
+✓ Connection status: "Connected"
+
+Validation Commands (Azure CLI):
+--------------------------------
+# Verify app registration has correct permissions
+az ad app permission list --id <app-id>
+
+# Check service principal exists
+az ad sp show --id <client-id>
+
+=== SP-02: SEARCH/RETRIEVE DOCUMENTS ===
+
+Test SharePoint Structure:
+--------------------------
+Site: "Corporate Knowledge Base"
+Library: "Technical Documentation"
+Folders:
+  - /User Guides/
+  - /Admin Guides/
+  - /API Documentation/
+  - /FAQs/
+
+Sample Documents:
+-----------------
+1. "AI_Adama_User_Guide.docx" (in /User Guides/)
+2. "Session_Management.pdf" (in /User Guides/)
+3. "Admin_Security_Settings.docx" (in /Admin Guides/)
+4. "API_Reference_v1.pdf" (in /API Documentation/)
+5. "Common_Issues_FAQ.docx" (in /FAQs/)
+
+Search Test Cases:
+------------------
+Test 1: Search by filename
+  Query: "Session Management"
+  Expected: Returns "Session_Management.pdf"
+
+Test 2: Search by content
+  Query: "How to create a new session"
+  Expected: Returns documents containing session creation instructions
+
+Test 3: Restricted document
+  Query: "Admin Security Settings"
+  Expected: Only authorized users can access
+
+Retrieval Test:
+---------------
+1. Select document from search results
+2. Open/download document
+3. Verify source attribution shows:
+   - Document name
+   - SharePoint site
+   - Last modified date
+   - Author (if available)
+
+=== SP-03: ACCESS RESTRICTION ENFORCEMENT ===
+
+User Access Matrix:
+-------------------
+User: admin@example.com
+  ✓ Access to all libraries
+  ✓ /User Guides/
+  ✓ /Admin Guides/
+  ✓ /API Documentation/
+  ✓ /FAQs/
+
+User: viewer@example.com
+  ✓ /User Guides/
+  ✓ /FAQs/
+  ✗ /Admin Guides/ (BLOCKED)
+  ✗ /API Documentation/ (BLOCKED)
+
+User: external@partner.com
+  ✓ /FAQs/ (shared externally)
+  ✗ All other folders (BLOCKED)
+
+Test Scenarios:
+---------------
+Scenario 1: Authorized Access
+  User: admin@example.com
+  Action: Search for "Admin Security Settings"
+  Expected: Document returned and accessible
+
+Scenario 2: Unauthorized Access Attempt
+  User: viewer@example.com
+  Action: Try to access /Admin Guides/ folder
+  Expected: 
+    - Access denied message
+    - "You do not have permission to access this content"
+    - Audit log entry created
+
+Scenario 3: External User Access
+  User: external@partner.com
+  Action: Search across all libraries
+  Expected: Only /FAQs/ results shown
+
+Audit Requirements:
+-------------------
+Every access attempt must log:
+- User ID and role
+- Document/folder requested
+- Access granted/denied
+- Timestamp
+- IP address
+
+=== SP-04: USE KB IN AI QUERY ===
+
+Test Scenario:
+--------------
+Setup:
+1. Connect to SharePoint KB
+2. Ensure "AI_Adama_User_Guide.docx" contains:
+   "To create a new session, click the 'New Session' button 
+    in the top navigation bar. Your conversation will start 
+    with a fresh context."
+
+Test Query:
+-----------
+User asks: "How do I create a new session in AI Adama?"
+
+Expected AI Response:
+---------------------
+Answer should include:
+✓ Clear instruction: "Click the 'New Session' button in the top navigation"
+✓ Source citation: 
+  - Document: AI_Adama_User_Guide.docx
+  - Source: SharePoint - Corporate Knowledge Base
+  - Link to document (if user has access)
+✓ Attribution format:
+  "[Source: AI_Adama_User_Guide.docx, Corporate Knowledge Base]"
+
+Response should NOT:
+✗ Provide incorrect information
+✗ Hallucinate details not in the document
+✗ Show citation for inaccessible documents
+
+=== SP-05: HANDLE MISSING/DELETED ITEMS ===
+
+Test Scenario: Document Deleted Mid-Session
+-------------------------------------------
+Setup:
+1. User asks a question
+2. System references a SharePoint document
+3. Document gets deleted from SharePoint
+4. User follows citation link
+
+Expected Behavior:
+------------------
+✓ Clear error message: "The document 'filename.docx' is no longer available"
+✓ Suggested action: "Please contact your administrator"
+✓ Correlation ID provided for support
+✓ Log entry created with:
+  - User ID
+  - Document path
+  - Error type: "DocumentNotFound"
+  - Correlation ID
+  - Timestamp
+
+Error Message Example:
+---------------------
+"⚠️ Document Not Found
+
+The document 'Session_Management.pdf' referenced in this answer 
+is no longer available in SharePoint.
+
+Possible reasons:
+• Document was moved or deleted
+• Your access permissions changed
+• The SharePoint site is temporarily unavailable
+
+Correlation ID: abc-123-def-456
+Please contact support if you need assistance."
+
+=== VALIDATION CHECKLIST ===
+
+SP-01 (Connect):
+□ OAuth flow completes successfully
+□ Valid token acquired
+□ Resources listed correctly
+□ No permission errors
+
+SP-02 (Search/Retrieve):
+□ Search returns relevant documents
+□ Only authorized documents accessible
+□ Source attribution displayed
+□ Download works correctly
+
+SP-03 (Access Control):
+□ ACLs enforced per user
+□ Unauthorized access blocked
+□ Clear error messages
+□ Audit trail created
+
+SP-04 (AI Query):
+□ KB content used in answers
+□ Proper citations included
+□ Links to sources provided
+□ No hallucination
+
+SP-05 (Error Handling):
+□ Missing documents handled gracefully
+□ Clear error messages
+□ Correlation ID provided
+□ Logs capture issue

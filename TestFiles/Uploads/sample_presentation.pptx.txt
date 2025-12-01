@@ -1,0 +1,41 @@
+# UPL-03: Simulated PPTX file (PowerPoint presentation)
+# This is a placeholder - replace with actual .pptx in real testing
+
+TEST ID: UPL-03
+FILE TYPE: PPTX (Microsoft PowerPoint)
+SIZE: ~7MB
+EXPECTED: Upload succeeds; slides accessible
+
+Presentation: AI Adama System Overview
+=======================================
+
+Slide 1: Title
+--------------
+כותרת: מערכת AI Adama
+כותרת משנה: מערכת AI ארגונית מתקדמת
+
+Slide 2: Features
+-----------------
+• ניהול היסטוריית שיחות
+• העלאת קבצים מרובים
+• אינטגרציה עם SharePoint
+• חיפוש מתקדם באינטרנט
+• מחקר מעמיק (Deep Research)
+
+Slide 3: File Upload Capabilities
+----------------------------------
+✓ תמונות: PNG, JPG (עד 10MB)
+✓ מסמכים: PDF, DOCX, PPTX (עד 10MB)
+✓ נתונים: CSV, JSON, TXT
+✗ Excel: חסום לפי מדיניות
+
+Slide 4: Security & Privacy
+----------------------------
+- הצפנה בתעבורה ובאחסון
+- RBAC (בקרת גישה מבוססת תפקידים)
+- מיסוך מידע רגיש (PII)
+- רישום פעולות מלא
+
+Slide 5: Thank You
+------------------
+שאלות? support@example.com

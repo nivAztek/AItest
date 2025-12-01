@@ -1,0 +1,120 @@
+# SEC-01: RBAC (Role-Based Access Control) Test Scenarios
+
+TEST ID: SEC-01
+PURPOSE: Validate role-based access controls for actions
+EXPECTED: Policy consistently enforced; unauthorized actions blocked and logged
+
+=== USER ROLES DEFINITION ===
+
+Admin Role:
+-----------
+Permissions:
+✓ Create, Read, Update, Delete (CRUD) all resources
+✓ Manage users and roles
+✓ Configure system settings
+✓ Access audit logs
+✓ Delete files/folders/collections
+✓ Share with external users
+✓ Modify security policies
+
+Editor Role:
+------------
+Permissions:
+✓ Create, Read, Update own resources
+✓ Read others' resources (if shared)
+✓ Upload files
+✓ Create sessions, prompts, presets
+✓ Share resources within organization
+✗ Delete others' resources
+✗ Modify system settings
+✗ Access full audit logs
+✗ Manage users
+
+Viewer Role:
+------------
+Permissions:
+✓ Read shared resources
+✓ View sessions (read-only)
+✓ Download files (if permitted)
+✗ Create/Upload any resources
+✗ Modify any resources
+✗ Delete any resources
+✗ Share resources
+✗ Access settings
+
+=== TEST SCENARIOS ===
+
+Test 1: File Upload
+-------------------
+Admin: Should succeed ✓
+Editor: Should succeed ✓
+Viewer: Should be blocked ✗
+Expected error: "Viewers do not have permission to upload files"
+
+Test 2: File Deletion
+---------------------
+Admin: Can delete any file ✓
+Editor: Can delete own files only ✓
+Editor: Blocked from deleting others' files ✗
+Viewer: Blocked from all deletion ✗
+Expected error: "Insufficient permissions to delete this file"
+
+Test 3: Prompt Creation
+-----------------------
+Admin: Should succeed ✓
+Editor: Should succeed ✓
+Viewer: Should be blocked ✗
+Expected error: "Viewers cannot create prompts"
+
+Test 4: Preset Modification
+---------------------------
+Admin: Can modify any preset ✓
+Editor: Can modify own presets ✓
+Editor: Blocked from modifying others' presets ✗
+Viewer: Blocked from all modification ✗
+
+Test 5: User Management
+-----------------------
+Admin: Can create/modify/delete users ✓
+Editor: Blocked ✗
+Viewer: Blocked ✗
+Expected error: "Only administrators can manage users"
+
+Test 6: Audit Log Access
+------------------------
+Admin: Full access ✓
+Editor: Limited access (own actions only) ✓
+Viewer: Blocked ✗
+
+Test 7: System Settings
+-----------------------
+Admin: Full access ✓
+Editor: Blocked ✗
+Viewer: Blocked ✗
+
+=== TEST DATA ===
+
+Test Users:
+-----------
+1. admin@example.com (Admin role)
+2. editor1@example.com (Editor role)
+3. editor2@example.com (Editor role)
+4. viewer@example.com (Viewer role)
+
+Test Resources:
+---------------
+File1: owned by editor1
+File2: owned by editor2
+Prompt1: owned by admin
+Collection1: owned by editor1, shared with viewer
+
+=== AUDIT REQUIREMENTS ===
+
+Every blocked action must log:
+- Timestamp
+- User ID and role
+- Attempted action
+- Resource ID
+- Denial reason
+- IP address
+- Session ID

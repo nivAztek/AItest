@@ -1,0 +1,33 @@
+# UPL-03: Simulated DOCX file (Word document)
+# This is a placeholder - replace with actual .docx in real testing
+
+TEST ID: UPL-03
+FILE TYPE: DOCX (Microsoft Word)
+SIZE: ~8MB
+EXPECTED: Upload succeeds; content accessible
+
+Document Content Sample:
+=======================
+
+דוח בדיקה - מערכת AI Adama
+
+מבוא
+-----
+מסמך זה מכיל את תוצאות הבדיקה של מערכת AI Adama.
+הבדיקה כוללת וידוא של יכולות העלאת קבצים מסוג Office.
+
+ממצאים
+-------
+1. תמיכה בקבצי Word (.docx)
+2. תמיכה בקבצי PowerPoint (.pptx)
+3. חסימת קבצי Excel (.xlsx) לפי מדיניות
+
+המלצות
+-------
+- לוודא תצוגת מקדימה תקינה
+- לבדוק חילוץ טקסט מהמסמך
+- לוודא קידוד UTF-8 לעברית
+
+סיכום
+------
+המערכת עומדת בדרישות לטיפול בקבצי MS Office.
