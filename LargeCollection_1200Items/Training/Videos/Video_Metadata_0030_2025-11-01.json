@@ -1,0 +1,15 @@
+﻿{
+    "id":  "DOC-1009",
+    "version":  "1.0",
+    "category":  "Training",
+    "tags":  [
+                 "test",
+                 "documentation",
+                 "generated"
+             ],
+    "author":  "Test User 10",
+    "created":  "2025-11-01",
+    "subcategory":  "Videos",
+    "title":  "Video_Metadata 30",
+    "fileSize":  5120
+}

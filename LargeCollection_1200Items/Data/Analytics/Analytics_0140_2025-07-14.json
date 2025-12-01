@@ -1,0 +1,15 @@
+﻿{
+    "id":  "DOC-679",
+    "version":  "1.0",
+    "category":  "Data",
+    "tags":  [
+                 "test",
+                 "documentation",
+                 "generated"
+             ],
+    "author":  "Test User 0",
+    "created":  "2025-07-14",
+    "subcategory":  "Analytics",
+    "title":  "Analytics 140",
+    "fileSize":  102400
+}

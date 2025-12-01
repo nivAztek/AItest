@@ -1,0 +1,15 @@
+﻿{
+    "id":  "DOC-809",
+    "version":  "1.0",
+    "category":  "Data",
+    "tags":  [
+                 "test",
+                 "documentation",
+                 "generated"
+             ],
+    "author":  "Test User 0",
+    "created":  "2025-09-12",
+    "subcategory":  "Raw Data",
+    "title":  "RawData 80",
+    "fileSize":  122880
+}

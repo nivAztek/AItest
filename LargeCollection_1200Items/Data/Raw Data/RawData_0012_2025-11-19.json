@@ -1,0 +1,15 @@
+﻿{
+    "id":  "DOC-673",
+    "version":  "1.2",
+    "category":  "Data",
+    "tags":  [
+                 "test",
+                 "documentation",
+                 "generated"
+             ],
+    "author":  "Test User 12",
+    "created":  "2025-11-19",
+    "subcategory":  "Raw Data",
+    "title":  "RawData 12",
+    "fileSize":  122880
+}

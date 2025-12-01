@@ -1,0 +1,15 @@
+﻿{
+    "id":  "DOC-753",
+    "version":  "1.2",
+    "category":  "Data",
+    "tags":  [
+                 "test",
+                 "documentation",
+                 "generated"
+             ],
+    "author":  "Test User 12",
+    "created":  "2025-10-10",
+    "subcategory":  "Raw Data",
+    "title":  "RawData 52",
+    "fileSize":  122880
+}

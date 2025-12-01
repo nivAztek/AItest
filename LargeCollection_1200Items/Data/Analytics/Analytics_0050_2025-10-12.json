@@ -1,0 +1,15 @@
+﻿{
+    "id":  "DOC-499",
+    "version":  "1.0",
+    "category":  "Data",
+    "tags":  [
+                 "test",
+                 "documentation",
+                 "generated"
+             ],
+    "author":  "Test User 10",
+    "created":  "2025-10-12",
+    "subcategory":  "Analytics",
+    "title":  "Analytics 50",
+    "fileSize":  102400
+}
